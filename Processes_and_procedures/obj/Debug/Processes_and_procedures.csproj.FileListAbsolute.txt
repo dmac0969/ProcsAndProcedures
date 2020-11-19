@@ -1,0 +1,11 @@
+C:\Users\macderds\source\repos\Processes_and_procedures\bin\Debug\Processes_and_procedures.exe.config
+C:\Users\macderds\source\repos\Processes_and_procedures\bin\Debug\Processes_and_procedures.exe
+C:\Users\macderds\source\repos\Processes_and_procedures\bin\Debug\Processes_and_procedures.pdb
+C:\Users\macderds\source\repos\Processes_and_procedures\obj\Debug\Processes_and_procedures.csprojAssemblyReference.cache
+C:\Users\macderds\source\repos\Processes_and_procedures\obj\Debug\Processes_and_procedures.frmProcessesAndProcedures.resources
+C:\Users\macderds\source\repos\Processes_and_procedures\obj\Debug\Processes_and_procedures.Properties.Resources.resources
+C:\Users\macderds\source\repos\Processes_and_procedures\obj\Debug\Processes_and_procedures.csproj.GenerateResource.cache
+C:\Users\macderds\source\repos\Processes_and_procedures\obj\Debug\Processes_and_procedures.exe
+C:\Users\macderds\source\repos\Processes_and_procedures\obj\Debug\Processes_and_procedures.pdb
+C:\Users\macderds\source\repos\Processes_and_procedures\obj\Debug\Processes_and_procedures.frmCreateProcedure.resources
+C:\Users\macderds\source\repos\Processes_and_procedures\obj\Debug\Processes_and_procedures.frmViewSteps.resources
