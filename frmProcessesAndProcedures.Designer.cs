@@ -40,10 +40,14 @@
             this.btnViewProcedure = new System.Windows.Forms.Button();
             this.btnDeleteProcedure = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.incidentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewPastIncidentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proceduresBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processesAndProcedures_DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processesAndProceduresDataSetBindingSource)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -137,6 +141,32 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.incidentsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // incidentsToolStripMenuItem
+            // 
+            this.incidentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewPastIncidentsToolStripMenuItem});
+            this.incidentsToolStripMenuItem.Name = "incidentsToolStripMenuItem";
+            this.incidentsToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.incidentsToolStripMenuItem.Text = "Incidents";
+            // 
+            // viewPastIncidentsToolStripMenuItem
+            // 
+            this.viewPastIncidentsToolStripMenuItem.Name = "viewPastIncidentsToolStripMenuItem";
+            this.viewPastIncidentsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.viewPastIncidentsToolStripMenuItem.Text = "View Past Incidents";
+            this.viewPastIncidentsToolStripMenuItem.Click += new System.EventHandler(this.viewPastIncidentsToolStripMenuItem_Click);
+            // 
             // frmProcessesAndProcedures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -147,6 +177,8 @@
             this.Controls.Add(this.btnViewProcedure);
             this.Controls.Add(this.btnCreateProcedure);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmProcessesAndProcedures";
             this.Text = "Processes and Procedures";
             this.Load += new System.EventHandler(this.frmProcessesAndProcedures_Load);
@@ -154,7 +186,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.proceduresBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processesAndProcedures_DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processesAndProceduresDataSetBindingSource)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -171,6 +206,9 @@
         private System.Windows.Forms.Button btnViewProcedure;
         private System.Windows.Forms.Button btnDeleteProcedure;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem incidentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewPastIncidentsToolStripMenuItem;
     }
 }
 
