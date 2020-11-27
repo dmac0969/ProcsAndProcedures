@@ -43,6 +43,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.incidentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewPastIncidentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toDoListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proceduresBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processesAndProcedures_DataSet)).BeginInit();
@@ -155,10 +156,11 @@
             // incidentsToolStripMenuItem
             // 
             this.incidentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewPastIncidentsToolStripMenuItem});
+            this.viewPastIncidentsToolStripMenuItem,
+            this.toDoListToolStripMenuItem});
             this.incidentsToolStripMenuItem.Name = "incidentsToolStripMenuItem";
-            this.incidentsToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
-            this.incidentsToolStripMenuItem.Text = "Incidents";
+            this.incidentsToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
+            this.incidentsToolStripMenuItem.Text = "Menu";
             // 
             // viewPastIncidentsToolStripMenuItem
             // 
@@ -166,6 +168,13 @@
             this.viewPastIncidentsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.viewPastIncidentsToolStripMenuItem.Text = "View Past Incidents";
             this.viewPastIncidentsToolStripMenuItem.Click += new System.EventHandler(this.viewPastIncidentsToolStripMenuItem_Click);
+            // 
+            // toDoListToolStripMenuItem
+            // 
+            this.toDoListToolStripMenuItem.Name = "toDoListToolStripMenuItem";
+            this.toDoListToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.toDoListToolStripMenuItem.Text = "To-Do List";
+            this.toDoListToolStripMenuItem.Click += new System.EventHandler(this.toDoListToolStripMenuItem_Click);
             // 
             // frmProcessesAndProcedures
             // 
@@ -209,6 +218,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem incidentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewPastIncidentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toDoListToolStripMenuItem;
     }
 }
 

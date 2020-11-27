@@ -58,11 +58,20 @@
     <Compile Include="frmCreateProcedure.Designer.cs">
       <DependentUpon>frmCreateProcedure.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmToDo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmToDo.Designer.cs">
+      <DependentUpon>frmToDo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmViewSteps.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmViewSteps.Designer.cs">
       <DependentUpon>frmViewSteps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessesAndProcedures_DataSet.cs">
+      <DependentUpon>ProcessesAndProcedures_DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ProcessesAndProcedures_DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -76,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCreateProcedure.resx">
       <DependentUpon>frmCreateProcedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmToDo.resx">
+      <DependentUpon>frmToDo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmViewSteps.resx">
       <DependentUpon>frmViewSteps.cs</DependentUpon>

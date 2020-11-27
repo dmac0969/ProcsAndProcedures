@@ -71,5 +71,11 @@ namespace Processes_and_procedures
         {
 
         }
+
+        private void toDoListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmToDo newToDoFrm = new frmToDo();
+            newToDoFrm.Show();
+        }
     }
 }
