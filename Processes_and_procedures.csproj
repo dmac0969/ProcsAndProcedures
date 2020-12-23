@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmIncidents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIncidents.Designer.cs">
+      <DependentUpon>frmIncidents.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProcessesAndProcedures.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmIncidents.resx">
+      <DependentUpon>frmIncidents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProcessesAndProcedures.resx">
       <DependentUpon>frmProcessesAndProcedures.cs</DependentUpon>
     </EmbeddedResource>

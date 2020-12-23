@@ -53,7 +53,8 @@ namespace Processes_and_procedures
         {
             DataSet ds1 = new DataSet();
 
-            String query = "SELECT Step_ID, Procedure_ID, Step_Number, Step_Text, Step_Command FROM dbo.Steps WHERE Procedure_ID = " + procID;
+            String query = "SELECT Step_ID, Procedure_ID, Step_Number, Step_Text, Step_Command FROM dbo.Steps WHERE Procedure_ID = " + procID +
+                           "ORDER BY Step_Number desc";
 
             // Create new table adapter with the data from the specified query
             SqlDataAdapter daSteps
@@ -194,6 +195,13 @@ namespace Processes_and_procedures
             con.Close();
 
             refreshTable();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtStepNumber.Text = null;
+            txtStepText.Text = null;
+            txtStepCommand.Text = null;
         }
     }
 }

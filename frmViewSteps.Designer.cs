@@ -47,6 +47,8 @@
             this.lblStepText = new System.Windows.Forms.Label();
             this.txtStepCommand = new System.Windows.Forms.TextBox();
             this.stepsTableAdapter = new Processes_and_procedures.ProcessesAndProcedures_DataSetTableAdapters.StepsTableAdapter();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stepsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processesAndProcedures_DataSet1)).BeginInit();
@@ -64,7 +66,7 @@
             this.Step_Command});
             this.dataGridView1.DataSource = this.stepsBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(145, 70);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -128,7 +130,7 @@
             // btnAddStep
             // 
             this.btnAddStep.Location = new System.Drawing.Point(38, 71);
-            this.btnAddStep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddStep.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddStep.Name = "btnAddStep";
             this.btnAddStep.Size = new System.Drawing.Size(101, 37);
             this.btnAddStep.TabIndex = 1;
@@ -139,7 +141,7 @@
             // btnUpdateStep
             // 
             this.btnUpdateStep.Location = new System.Drawing.Point(38, 128);
-            this.btnUpdateStep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdateStep.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateStep.Name = "btnUpdateStep";
             this.btnUpdateStep.Size = new System.Drawing.Size(101, 37);
             this.btnUpdateStep.TabIndex = 2;
@@ -150,7 +152,7 @@
             // btnDeleteStep
             // 
             this.btnDeleteStep.Location = new System.Drawing.Point(38, 182);
-            this.btnDeleteStep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeleteStep.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteStep.Name = "btnDeleteStep";
             this.btnDeleteStep.Size = new System.Drawing.Size(101, 37);
             this.btnDeleteStep.TabIndex = 3;
@@ -160,8 +162,8 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(38, 312);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Location = new System.Drawing.Point(38, 351);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(101, 37);
             this.btnExit.TabIndex = 5;
@@ -183,7 +185,7 @@
             // txtStepNumber
             // 
             this.txtStepNumber.Location = new System.Drawing.Point(110, 19);
-            this.txtStepNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtStepNumber.Margin = new System.Windows.Forms.Padding(2);
             this.txtStepNumber.Name = "txtStepNumber";
             this.txtStepNumber.Size = new System.Drawing.Size(129, 20);
             this.txtStepNumber.TabIndex = 7;
@@ -191,7 +193,7 @@
             // txtStepText
             // 
             this.txtStepText.Location = new System.Drawing.Point(338, 19);
-            this.txtStepText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtStepText.Margin = new System.Windows.Forms.Padding(2);
             this.txtStepText.Multiline = true;
             this.txtStepText.Name = "txtStepText";
             this.txtStepText.Size = new System.Drawing.Size(392, 48);
@@ -211,7 +213,7 @@
             // txtStepCommand
             // 
             this.txtStepCommand.Location = new System.Drawing.Point(789, 20);
-            this.txtStepCommand.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtStepCommand.Margin = new System.Windows.Forms.Padding(2);
             this.txtStepCommand.Multiline = true;
             this.txtStepCommand.Name = "txtStepCommand";
             this.txtStepCommand.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -223,11 +225,23 @@
             // 
             this.stepsTableAdapter.ClearBeforeFill = true;
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(38, 238);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(101, 37);
+            this.btnClear.TabIndex = 12;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // frmViewSteps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1274, 624);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.txtStepCommand);
             this.Controls.Add(this.lblStepText);
             this.Controls.Add(this.txtStepText);
@@ -238,7 +252,7 @@
             this.Controls.Add(this.btnUpdateStep);
             this.Controls.Add(this.btnAddStep);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmViewSteps";
             this.Text = "frmViewSteps";
             this.Load += new System.EventHandler(this.frmViewSteps_Load);
@@ -270,5 +284,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Procedure_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Step_Command;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnClear;
     }
 }

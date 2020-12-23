@@ -1481,6 +1481,8 @@ namespace Processes_and_procedures {
             
             private global::System.Data.DataColumn columnIncident_Notes;
             
+            private global::System.Data.DataColumn columnActive;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public IncidentsDataTable() {
@@ -1564,6 +1566,14 @@ namespace Processes_and_procedures {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ActiveColumn {
+                get {
+                    return this.columnActive;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1599,7 +1609,7 @@ namespace Processes_and_procedures {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public IncidentsRow AddIncidentsRow(int Incident_Number, int Procedure_ID, string Incident_Description, System.DateTime Incident_Date, string Incident_Notes) {
+            public IncidentsRow AddIncidentsRow(int Incident_Number, int Procedure_ID, string Incident_Description, System.DateTime Incident_Date, string Incident_Notes, bool Active) {
                 IncidentsRow rowIncidentsRow = ((IncidentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1607,7 +1617,8 @@ namespace Processes_and_procedures {
                         Procedure_ID,
                         Incident_Description,
                         Incident_Date,
-                        Incident_Notes};
+                        Incident_Notes,
+                        Active};
                 rowIncidentsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowIncidentsRow);
                 return rowIncidentsRow;
@@ -1643,6 +1654,7 @@ namespace Processes_and_procedures {
                 this.columnIncident_Description = base.Columns["Incident_Description"];
                 this.columnIncident_Date = base.Columns["Incident_Date"];
                 this.columnIncident_Notes = base.Columns["Incident_Notes"];
+                this.columnActive = base.Columns["Active"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1660,6 +1672,8 @@ namespace Processes_and_procedures {
                 base.Columns.Add(this.columnIncident_Date);
                 this.columnIncident_Notes = new global::System.Data.DataColumn("Incident_Notes", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIncident_Notes);
+                this.columnActive = new global::System.Data.DataColumn("Active", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnActive);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIncident_ID}, true));
                 this.columnIncident_ID.AutoIncrement = true;
@@ -2732,6 +2746,22 @@ namespace Processes_and_procedures {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Active {
+                get {
+                    try {
+                        return ((bool)(this[this.tableIncidents.ActiveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Active\' in table \'Incidents\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableIncidents.ActiveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIncident_NotesNull() {
                 return this.IsNull(this.tableIncidents.Incident_NotesColumn);
             }
@@ -2740,6 +2770,18 @@ namespace Processes_and_procedures {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetIncident_NotesNull() {
                 this[this.tableIncidents.Incident_NotesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsActiveNull() {
+                return this.IsNull(this.tableIncidents.ActiveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetActiveNull() {
+                this[this.tableIncidents.ActiveColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4050,41 +4092,46 @@ SELECT Step_ID, Procedure_ID, Step_Number, Step_Text, Step_Command FROM Steps WH
             tableMapping.ColumnMappings.Add("Incident_Description", "Incident_Description");
             tableMapping.ColumnMappings.Add("Incident_Date", "Incident_Date");
             tableMapping.ColumnMappings.Add("Incident_Notes", "Incident_Notes");
+            tableMapping.ColumnMappings.Add("Active", "Active");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [incidents] WHERE (([Incident_ID] = @Original_Incident_ID) AND ([Inci" +
-                "dent_Number] = @Original_Incident_Number) AND ([Procedure_ID] = @Original_Proced" +
-                "ure_ID) AND ([Incident_Date] = @Original_Incident_Date))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [incidents] WHERE (([Incident_ID] = @Original_Incident_ID) AND ([Incident_Number] = @Original_Incident_Number) AND ([Procedure_ID] = @Original_Procedure_ID) AND ([Incident_Date] = @Original_Incident_Date) AND ((@IsNull_Active = 1 AND [Active] IS NULL) OR ([Active] = @Original_Active)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Incident_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Incident_Number", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Number", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Procedure_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Procedure_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Incident_Date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [incidents] ([Incident_Number], [Procedure_ID], [Incident_Description], [Incident_Date], [Incident_Notes]) VALUES (@Incident_Number, @Procedure_ID, @Incident_Description, @Incident_Date, @Incident_Notes);
-SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Incident_Date, Incident_Notes FROM Incidents WHERE (Incident_ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [incidents] ([Incident_Number], [Procedure_ID], [Incident_Description], [Incident_Date], [Incident_Notes], [Active]) VALUES (@Incident_Number, @Procedure_ID, @Incident_Description, @Incident_Date, @Incident_Notes, @Active);
+SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Incident_Date, Incident_Notes, Active FROM Incidents WHERE (Incident_ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_Number", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Number", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Procedure_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Procedure_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_Description", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_Date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [incidents] SET [Incident_Number] = @Incident_Number, [Procedure_ID] = @Procedure_ID, [Incident_Description] = @Incident_Description, [Incident_Date] = @Incident_Date, [Incident_Notes] = @Incident_Notes WHERE (([Incident_ID] = @Original_Incident_ID) AND ([Incident_Number] = @Original_Incident_Number) AND ([Procedure_ID] = @Original_Procedure_ID) AND ([Incident_Date] = @Original_Incident_Date));
-SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Incident_Date, Incident_Notes FROM Incidents WHERE (Incident_ID = @Incident_ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [incidents] SET [Incident_Number] = @Incident_Number, [Procedure_ID] = @Procedure_ID, [Incident_Description] = @Incident_Description, [Incident_Date] = @Incident_Date, [Incident_Notes] = @Incident_Notes, [Active] = @Active WHERE (([Incident_ID] = @Original_Incident_ID) AND ([Incident_Number] = @Original_Incident_Number) AND ([Procedure_ID] = @Original_Procedure_ID) AND ([Incident_Date] = @Original_Incident_Date) AND ((@IsNull_Active = 1 AND [Active] IS NULL) OR ([Active] = @Original_Active)));
+SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Incident_Date, Incident_Notes, Active FROM Incidents WHERE (Incident_ID = @Incident_ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_Number", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Number", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Procedure_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Procedure_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_Description", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_Date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Incident_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Incident_Number", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Number", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Procedure_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Procedure_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Incident_Date", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Incident_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Incident_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -4162,11 +4209,19 @@ SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Inciden
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Incident_ID, int Original_Incident_Number, int Original_Procedure_ID, System.DateTime Original_Incident_Date) {
+        public virtual int Delete(int Original_Incident_ID, int Original_Incident_Number, int Original_Procedure_ID, System.DateTime Original_Incident_Date, global::System.Nullable<bool> Original_Active) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Incident_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_Incident_Number));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Procedure_ID));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_Incident_Date));
+            if ((Original_Active.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_Active.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4187,7 +4242,7 @@ SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Inciden
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Incident_Number, int Procedure_ID, string Incident_Description, System.DateTime Incident_Date, string Incident_Notes) {
+        public virtual int Insert(int Incident_Number, int Procedure_ID, string Incident_Description, System.DateTime Incident_Date, string Incident_Notes, global::System.Nullable<bool> Active) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Incident_Number));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(Procedure_ID));
             if ((Incident_Description == null)) {
@@ -4202,6 +4257,12 @@ SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Inciden
             }
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Incident_Notes));
+            }
+            if ((Active.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(Active.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4223,7 +4284,7 @@ SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Inciden
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Incident_Number, int Procedure_ID, string Incident_Description, System.DateTime Incident_Date, string Incident_Notes, int Original_Incident_ID, int Original_Incident_Number, int Original_Procedure_ID, System.DateTime Original_Incident_Date, int Incident_ID) {
+        public virtual int Update(int Incident_Number, int Procedure_ID, string Incident_Description, System.DateTime Incident_Date, string Incident_Notes, global::System.Nullable<bool> Active, int Original_Incident_ID, int Original_Incident_Number, int Original_Procedure_ID, System.DateTime Original_Incident_Date, global::System.Nullable<bool> Original_Active, int Incident_ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Incident_Number));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Procedure_ID));
             if ((Incident_Description == null)) {
@@ -4239,11 +4300,25 @@ SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Inciden
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Incident_Notes));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Incident_ID));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Incident_Number));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Procedure_ID));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_Incident_Date));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Incident_ID));
+            if ((Active.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(Active.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Incident_ID));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Incident_Number));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_Procedure_ID));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_Incident_Date));
+            if ((Original_Active.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Original_Active.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Incident_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4264,8 +4339,8 @@ SELECT Incident_ID, Incident_Number, Procedure_ID, Incident_Description, Inciden
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Incident_Number, int Procedure_ID, string Incident_Description, System.DateTime Incident_Date, string Incident_Notes, int Original_Incident_ID, int Original_Incident_Number, int Original_Procedure_ID, System.DateTime Original_Incident_Date) {
-            return this.Update(Incident_Number, Procedure_ID, Incident_Description, Incident_Date, Incident_Notes, Original_Incident_ID, Original_Incident_Number, Original_Procedure_ID, Original_Incident_Date, Original_Incident_ID);
+        public virtual int Update(int Incident_Number, int Procedure_ID, string Incident_Description, System.DateTime Incident_Date, string Incident_Notes, global::System.Nullable<bool> Active, int Original_Incident_ID, int Original_Incident_Number, int Original_Procedure_ID, System.DateTime Original_Incident_Date, global::System.Nullable<bool> Original_Active) {
+            return this.Update(Incident_Number, Procedure_ID, Incident_Description, Incident_Date, Incident_Notes, Active, Original_Incident_ID, Original_Incident_Number, Original_Procedure_ID, Original_Incident_Date, Original_Active, Original_Incident_ID);
         }
     }
     
